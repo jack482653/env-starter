@@ -71,6 +71,9 @@ let g:syntastic_check_on_wq = 0
 " *** tagbar ***
 autocmd BufEnter * nested :call tagbar#autoopen(0)
 
+" Youcompleteme fix
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
 " *** latex ***
 set shellslash
 set grepprg=grep\ -nH\ $*
