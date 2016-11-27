@@ -20,6 +20,7 @@ Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'jnurmine/Zenburn'
 Plugin 'majutsushi/tagbar'
 Plugin 'mattn/emmet-vim'
+Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/nerdTree'
 Plugin 'scrooloose/syntastic'
@@ -72,6 +73,14 @@ let g:syntastic_check_on_wq = 0
 
 " *** tagbar ***
 autocmd BufEnter * nested :call tagbar#autoopen(0)
+
+" *** vim-indent-guides ***
+" let g:indent_guides_auto_colors = 0
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+autocmd VimEnter * IndentGuidesToggle
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=black
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 
 " Youcompleteme fix
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
