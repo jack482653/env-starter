@@ -24,11 +24,15 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/nerdTree'
 Plugin 'scrooloose/syntastic'
+Plugin 'sheerun/vim-polyglot'
 Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+set tabstop=4		" show existing tab with 4 spaces width
+set shiftwidth=4	" when indenting with '>', use 4 spaces width
+set noexpandtab
 
 " * Vim Setting ***
 set colorcolumn=80
