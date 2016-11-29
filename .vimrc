@@ -79,12 +79,14 @@ let g:syntastic_check_on_wq = 0
 autocmd BufEnter * nested :call tagbar#autoopen(0)
 
 " *** vim-indent-guides ***
-" let g:indent_guides_auto_colors = 0
-let g:indent_guides_start_level = 2
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar']
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_start_level = 1
 let g:indent_guides_guide_size = 1
 autocmd VimEnter * IndentGuidesToggle
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=black
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=236
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237
 
 " Youcompleteme fix
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
