@@ -15,6 +15,8 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
+Plugin 'derekwyatt/vim-scala'
+" Plugin 'ensime/ensime-vim'
 Plugin 'gerw/vim-latex-suite'
 Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'jnurmine/Zenburn'
@@ -77,6 +79,22 @@ let g:syntastic_check_on_wq = 0
 
 " *** tagbar ***
 autocmd BufEnter * nested :call tagbar#autoopen(0)
+let g:tagbar_type_scala = {
+    \ 'ctagstype' : 'scala',
+    \ 'sro'       : '.',
+    \ 'kinds'     : [
+      \ 'p:packages',
+      \ 'T:types:1',
+      \ 't:traits',
+      \ 'o:objects',
+      \ 'O:case objects',
+      \ 'c:classes',
+      \ 'C:case classes',
+      \ 'm:methods',
+      \ 'V:values:1',
+      \ 'v:variables:1'
+    \ ]
+	\ }
 
 " *** vim-indent-guides ***
 let g:indent_guides_enable_on_vim_startup = 1
@@ -88,8 +106,27 @@ autocmd VimEnter * IndentGuidesToggle
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=236
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237
 
-" Youcompleteme fix
+" YCM
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_semantic_triggers =  {
+  \   'c' : ['->', '.'],
+  \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+  \             're!\[.*\]\s'],
+  \   'ocaml' : ['.', '#'],
+  \   'cpp,objcpp' : ['->', '.', '::'],
+  \   'perl' : ['->'],
+  \   'php' : ['->', '::'],
+  \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+  \   'ruby' : ['.', '::'],
+  \   'lua' : ['.', ':'],
+  \   'erlang' : [':'],
+  \ }
+
+" ENSIME
+" autocmd BufWritePost *.scala silent :EnTypeCheck " Typechecking after writing
+"" Easy Type Inspection
+" nnoremap <localleader>t :EnTypeCheck<CR>
+
 
 " *** latex ***
 set shellslash
