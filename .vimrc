@@ -18,6 +18,8 @@ Plugin 'bling/vim-airline'
 Plugin 'derekwyatt/vim-scala'
 " Plugin 'ensime/ensime-vim'
 Plugin 'gerw/vim-latex-suite'
+Plugin 'fatih/vim-go'
+Plugin 'buoto/gotests-vim'
 Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'jnurmine/Zenburn'
 Plugin 'majutsushi/tagbar'
@@ -76,6 +78,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_list_type = "quickfix"
 
 " *** tagbar ***
 autocmd BufEnter * nested :call tagbar#autoopen(0)
@@ -140,6 +146,14 @@ let g:Tex_CompileRule_pdf = 'ps2pdf $*.ps'
 autocmd filetype tex map <silent> <F5> :set spell!:echo "Spell check: " . strpart("OffOn", 3 * &spell, 3)
 " Hotkey to view compiled pdf
 autocmd filetype tex map <silent> <F9> \ll:!echo % \| awk -F "." '{print $1".pdf"}' \| xargs evince
+
+" *** go-vim ***
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
 " *** python with virtualenv support ***
 " py << EOF
