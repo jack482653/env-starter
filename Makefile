@@ -13,7 +13,10 @@ vimrc:
 	cd ~/.vim/bundle/YouCompleteMe; ./install.py --clang-completer --gocode-completer
 
 ctags:
-	cp .ctags $$HOME/.ctags
+	ln -s .ctags $$HOME/.ctags
+
+tmux:
+	cp .tmux.conf $$HOME/.tmux.conf
 
 requirement:
 	if [ $(OS) == "Darwin" ]; then \
