@@ -1,10 +1,12 @@
 OS:=$(shell uname -s)
+PWD:=$(shell pwd)
 
-all: requirement vimrc ctags
+all: requirement vimrc ctags tmux
 
 vimrc:
 	if [ ! -L $$HOME/.vimrc ]; then \
-		ln -s .vimrc $$HOME/.vimrc; \
+		cd $$HOME; \
+		ln -s $(PWD)/.vimrc .vimrc; \
 	fi
 	if [ ! -d $$HOME/.vim/bundle/Vundle.vim ]; then \
 		git clone https://github.com/VundleVim/Vundle.vim.git $$HOME/.vim/bundle/Vundle.vim; \
@@ -13,10 +15,17 @@ vimrc:
 	cd ~/.vim/bundle/YouCompleteMe; ./install.py --clang-completer --gocode-completer
 
 ctags:
-	ln -s .ctags $$HOME/.ctags
+	if [ ! -L $$HOME/.ctags ]; then \
+		cd $$HOME; \
+		ln -s $(PWD)/.ctags .ctags; \
+	fi
+	pwd
 
 tmux:
-	cp .tmux.conf $$HOME/.tmux.conf
+	if [ ! -L $$HOME/.tmux.conf ]; then \
+		cd $$HOME; \
+		ln -s $(PWD)/.tmux.conf .tmux.conf; \
+	fi
 
 requirement:
 	if [ $(OS) == "Darwin" ]; then \
