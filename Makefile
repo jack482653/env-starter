@@ -1,24 +1,31 @@
-HOME:="~"
-OS:=$(shell uname)
+OS:=$(shell uname -s)
 
-all: requirement  vimrc ctags
+all: requirement vimrc ctags
 
 vimrc:
-	cp .vimrc $(HOME)/.vimrc
-	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	if [ ! -L $$HOME/.vimrc ]; then \
+		ln -s .vimrc $$HOME/.vimrc; \
+	fi
+	if [ ! -d $$HOME/.vim/bundle/Vundle.vim ]; then \
+		git clone https://github.com/VundleVim/Vundle.vim.git $$HOME/.vim/bundle/Vundle.vim; \
+	fi
 	vim +PluginInstall +qall
-	cd ~/.vim/bundle/YouCompleteMe; ./install.py --clang-completer
+	cd ~/.vim/bundle/YouCompleteMe; ./install.py --clang-completer --gocode-completer
 
 ctags:
-	cp .ctags $(HOME)/.ctags
+	cp .ctags $$HOME/.ctags
 
 requirement:
-	ifeq ($(OS), Darwin)
-		xcode-select --install; \
-		brew install cmake
-	else ifeq ($(OS), Linux)
-		sudo apt install build-essential cmake python-dev python3-dev exuberant-ctags
-	else
-		$(error Unsupported OS)
-	endif
-
+	if [ $(OS) == "Darwin" ]; then \
+		r=$$(xcode-select -p); \
+		echo $$r;\
+		if [ -z $$r ]; then \
+   			xcode-select --install; \
+		fi; \
+		brew install cmake; \
+	elif [ $(OS) == "Linux" ]; then \
+		sudo apt install build-essential cmake python-dev python3-dev exuberant-ctags; \
+	else \
+		echo "Unsupported OS: $(OS)"; \
+		exit 1; \
+	fi
