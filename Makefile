@@ -1,3 +1,4 @@
+SHELL:=/bin/bash
 OS:=$(shell uname -s)
 PWD:=$(shell pwd)
 
