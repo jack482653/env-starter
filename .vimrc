@@ -44,7 +44,7 @@ set showtabline=2	" show tab line
 set laststatus=2	" show status line
 set nu			" Show number line
 set t_Co=256		" Use 256 colours (Use this setting only if your terminal supports 256 colours)
-set clipboard=unnamed	" enable accessing system clipboard
+" set clipboard=unnamed	" enable accessing system clipboard
 set hlsearch		" highlight searaching result
 set encoding=utf-8
 scriptencoding utf-8
