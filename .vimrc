@@ -26,9 +26,11 @@ Plugin 'majutsushi/tagbar'
 Plugin 'mattn/emmet-vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'nvie/vim-flake8'
+Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdTree'
 Plugin 'scrooloose/syntastic'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
@@ -47,6 +49,8 @@ set t_Co=256		" Use 256 colours (Use this setting only if your terminal supports
 " set clipboard=unnamed	" enable accessing system clipboard
 set hlsearch		" highlight searaching result
 set encoding=utf-8
+" set guifont=Inconsolata\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 11
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ Mono\ 14
 scriptencoding utf-8
 syntax on
 colorscheme zenburn	" theme

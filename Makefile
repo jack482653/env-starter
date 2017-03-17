@@ -36,6 +36,8 @@ requirement:
    			xcode-select --install; \
 		fi; \
 		brew install cmake; \
+		brew tap caskroom/fonts; \
+		brew cask install font-dejavusansmono-nerd-font-mono; \
 	elif [ $(OS) == "Linux" ]; then \
 		sudo apt install build-essential cmake python-dev python3-dev exuberant-ctags; \
 	else \
