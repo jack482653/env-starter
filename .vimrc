@@ -32,6 +32,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -158,6 +160,10 @@ let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+" *** markdown ***
+" do not fold
+let g:vim_markdown_folding_disabled = 1
 
 " *** python with virtualenv support ***
 " py << EOF
