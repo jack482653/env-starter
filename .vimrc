@@ -43,6 +43,7 @@ set shiftwidth=4	" when indenting with '>', use 4 spaces width
 set noexpandtab
 
 " * Vim Setting ***
+set backspace=indent,eol,start
 set colorcolumn=80
 set showtabline=2	" show tab line
 set laststatus=2	" show status line
