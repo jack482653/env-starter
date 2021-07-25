@@ -29,7 +29,7 @@ tmux:
 	fi
 
 devtools:
-	brew install --cask visual-studio-code;
+	brew install --cask openvpn-connect visual-studio-code;
 
 utils:
 	brew install alfred;
