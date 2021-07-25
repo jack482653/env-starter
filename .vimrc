@@ -17,12 +17,13 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 Plugin 'derekwyatt/vim-scala'
 " Plugin 'ensime/ensime-vim'
+Plugin 'elzr/vim-json'
 Plugin 'gerw/vim-latex-suite'
 Plugin 'fatih/vim-go'
 Plugin 'buoto/gotests-vim'
 Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'jnurmine/Zenburn'
-Plugin 'majutsushi/tagbar'
+" Plugin 'majutsushi/tagbar'
 Plugin 'mattn/emmet-vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'nvie/vim-flake8'
@@ -91,30 +92,30 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:go_list_type = "quickfix"
 
 " *** tagbar ***
-autocmd BufEnter * nested :call tagbar#autoopen(0)
-let g:tagbar_type_scala = {
-    \ 'ctagstype' : 'scala',
-    \ 'sro'       : '.',
-    \ 'kinds'     : [
-      \ 'p:packages',
-      \ 'T:types:1',
-      \ 't:traits',
-      \ 'o:objects',
-      \ 'O:case objects',
-      \ 'c:classes',
-      \ 'C:case classes',
-      \ 'm:methods',
-      \ 'V:values:1',
-      \ 'v:variables:1'
-    \ ]
-	\ }
-
+" autocmd BufEnter * nested :call tagbar#autoopen(0)
+" let g:tagbar_type_scala = {
+"     \ 'ctagstype' : 'scala',
+"     \ 'sro'       : '.',
+"     \ 'kinds'     : [
+"       \ 'p:packages',
+"       \ 'T:types:1',
+"       \ 't:traits',
+"       \ 'o:objects',
+"       \ 'O:case objects',
+"       \ 'c:classes',
+"       \ 'C:case classes',
+"       \ 'm:methods',
+"       \ 'V:values:1',
+"       \ 'v:variables:1'
+"     \ ]
+" 	\ }
+" 
 " *** vim-indent-guides ***
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar']
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 1
-" let g:indent_guides_guide_size = 1
+let g:indent_guides_guide_size = 1
 autocmd VimEnter * IndentGuidesToggle
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=236
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237

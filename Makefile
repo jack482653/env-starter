@@ -2,7 +2,7 @@ SHELL:=/bin/bash
 OS:=$(shell uname -s)
 PWD:=$(shell pwd)
 
-all: requirement vimrc ctags tmux
+all: requirement sdkman java shell fonts vimrc ctags tmux utils devtools
 
 vimrc:
 	if [ ! -L $$HOME/.vimrc ]; then \
@@ -28,6 +28,32 @@ tmux:
 		ln -s $(PWD)/.tmux.conf .tmux.conf; \
 	fi
 
+devtools:
+	brew install --cask visual-studio-code;
+
+utils:
+	brew install alfred;
+
+fonts:
+	brew tap homebrew/cask-fonts; \
+	brew install --cask font-dejavusansmono-nerd-font-mono; \
+
+sdkman:
+	curl -s "https://get.sdkman.io" | bash; \
+	source "$HOME/.sdkman/bin/sdkman-init.sh"; \
+
+java:
+	sdk install java 11.0.11.hs-adpt;
+
+shell:
+	brew install --cask iterm2; \
+	brew install zsh; \
+	if [ ! -L $$HOME/.zshrc ]; then \
+		cd $$HOME; \
+		ln -s $(PWD)/.zshrc .zshrc; \
+	fi
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"; \
+
 requirement:
 	if [ $(OS) == "Darwin" ]; then \
 		r=$$(xcode-select -p); \
@@ -35,11 +61,7 @@ requirement:
 		if [ -z $$r ]; then \
    			xcode-select --install; \
 		fi; \
-		brew install cmake; \
-		brew tap caskroom/fonts; \
-		brew cask install font-dejavusansmono-nerd-font-mono; \
-	elif [ $(OS) == "Linux" ]; then \
-		sudo apt install build-essential cmake python-dev python3-dev exuberant-ctags; \
+		brew install coreutils cmake ripgrep; \
 	else \
 		echo "Unsupported OS: $(OS)"; \
 		exit 1; \
