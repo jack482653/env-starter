@@ -29,7 +29,7 @@ tmux:
 	fi
 
 devtools:
-	brew install --cask openvpn-connect visual-studio-code sourcetree;
+	brew install --cask openvpn-connect visual-studio-code sourcetree notion docker;
 
 utils:
 	brew install alfred;
@@ -61,7 +61,7 @@ requirement:
 		if [ -z $$r ]; then \
    			xcode-select --install; \
 		fi; \
-		brew install coreutils cmake ripgrep; \
+		brew install coreutils cmake ripgrep jq; \
 	else \
 		echo "Unsupported OS: $(OS)"; \
 		exit 1; \
