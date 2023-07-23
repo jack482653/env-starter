@@ -2,7 +2,7 @@ SHELL:=/bin/bash
 OS:=$(shell uname -s)
 PWD:=$(shell pwd)
 
-all: requirement sdkman java shell fonts vimrc ctags tmux utils devtools
+all: requirement sdkman nvm shell pyenv python poetry java node fonts vimrc ctags tmux utils devtools
 
 vimrc:
 	if [ ! -L $$HOME/.vimrc ]; then \
@@ -29,30 +29,54 @@ tmux:
 	fi
 
 devtools:
-	brew install --cask openvpn-connect visual-studio-code sourcetree notion docker;
+	brew install --cask openvpn-connect visual-studio-code sourcetree notion docker slack fig; \
+	brew install thefuck commitizen;
 
 utils:
-	brew install alfred;
+	brew install --cask raycast setapp;
 
 fonts:
 	brew tap homebrew/cask-fonts; \
-	brew install --cask font-dejavusansmono-nerd-font-mono; \
+	brew install --cask font-dejavu-sans-mono-nerd-font; \
 
 sdkman:
 	curl -s "https://get.sdkman.io" | bash; \
-	source "$HOME/.sdkman/bin/sdkman-init.sh"; \
+	source "$$HOME/.sdkman/bin/sdkman-init.sh"; \
 
 java:
-	sdk install java 11.0.11.hs-adpt;
+	sdk install java 20.0.1-open;
+
+pyenv:
+	brew install pyenv;
+
+python:
+	pyenv install 3.11; \
+	pyenv global 3.11;
+
+poetry:
+	curl -sSL https://install.python-poetry.org | python3 - ; \
+	mkdir "$$ZSH_CUSTOM/plugins/poetry"; \
+	poetry completions zsh > "$$ZSH_CUSTOM/plugins/poetry/_poetry";
+
+
+nvm:
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash;
+
+node:
+	nvm install --lts;
 
 shell:
 	brew install --cask iterm2; \
 	brew install zsh; \
 	if [ ! -L $$HOME/.zshrc ]; then \
 		cd $$HOME; \
+		rm .zshrc; \
 		ln -s $(PWD)/.zshrc .zshrc; \
 	fi
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"; \
+	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"; \
+	git clone https://github.com/zsh-users/zsh-autosuggestions "$$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"; \
+	curl -fsSL https://raw.githubusercontent.com/oskarkrawczyk/honukai-iterm/master/honukai.zsh-theme > "$$HOME/.oh-my-zsh/custom/themes/honukai.zsh-theme";
+
 
 requirement:
 	if [ $(OS) == "Darwin" ]; then \
@@ -61,7 +85,7 @@ requirement:
 		if [ -z $$r ]; then \
    			xcode-select --install; \
 		fi; \
-		brew install coreutils cmake ripgrep jq; \
+		brew install coreutils cmake ripgrep jq xz go; \
 	else \
 		echo "Unsupported OS: $(OS)"; \
 		exit 1; \

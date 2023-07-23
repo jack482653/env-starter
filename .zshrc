@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -52,7 +54,12 @@ ZSH_THEME="Honukai"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git battery zsh-autosuggestions)
+plugins=(
+	git
+	battery
+	zsh-autosuggestions
+	poetry
+)
 
 # User configuration
 
@@ -63,20 +70,20 @@ export PATH="/usr/local/opt/ccache/libexec:$PATH"
 # JAVA
 # export JAVA_HOME="$(/usr/libexec/java_home -v 13.0)"
 # Android SDK
-export ANDROID_HOME="/Users/zhangwuxian/Library/Android/sdk"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
 # Android NDK
-export NDK_DIR="/Users/zhangwuxian/Library/Android/sdk/ndk-bundle"
+export NDK_DIR="$HOME/Library/Android/sdk/ndk-bundle"
 export PATH="$NDK_DIR:$PATH"
 # Homebrew
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/sbin:/usr/local/bin:$PATH"
+export PATH="$(/opt/homebrew/bin/brew --prefix coreutils)/libexec/gnubin:/usr/local/sbin:/usr/local/bin:/opt/homebrew/bin:$PATH"
 # export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH"
 # Script
-export PATH="/Users/zhangwuxian/Script:$PATH"
+export PATH="$HOME/Script:$PATH"
 # scan-build
-export PATH="/Users/zhangwuxian/tools/checker/bin:$PATH"
+export PATH="$HOME/tools/checker/bin:$PATH"
 # Spark
-export PATH="/Users/zhangwuxian/tools/spark/bin:$PATH"
+export PATH="$HOME/tools/spark/bin:$PATH"
 # golang
 export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME/.go
@@ -112,7 +119,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias ls="ls --color=auto"
-alias man='_() { echo $1; man -M $(brew --prefix)/opt/coreutils/libexec/gnuman $1 1>/dev/null 2>&1;  if [ "$?" -eq 0 ]; then man -M $(brew --prefix)/opt/coreutils/libexec/gnuman $1; else man $1; fi }; _'
+# alias man='_() { echo $1; man -M $(brew --prefix)/opt/coreutils/libexec/gnuman $1 1>/dev/null 2>&1;  if [ "$?" -eq 0 ]; then man -M $(brew --prefix)/opt/coreutils/libexec/gnuman $1; else man $1; fi }; _'
 
 alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 
@@ -124,6 +131,20 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# rbenv
+eval "$(rbenv init - zsh)"
+
+# github-copilot-cli
+eval "$(github-copilot-cli alias -- "$0")"
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/zhangwuxian/.sdkman"
-[[ -s "/Users/zhangwuxian/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/zhangwuxian/.sdkman/bin/sdkman-init.sh"
+# export SDKMAN_DIR="$$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
