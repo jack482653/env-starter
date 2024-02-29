@@ -85,7 +85,7 @@ requirement:
 		if [ -z $$r ]; then \
    			xcode-select --install; \
 		fi; \
-		brew install coreutils cmake ripgrep jq xz go; \
+		brew install coreutils cmake ripgrep jq xz go ncdu; \
 	else \
 		echo "Unsupported OS: $(OS)"; \
 		exit 1; \
