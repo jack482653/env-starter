@@ -60,6 +60,7 @@ plugins=(
 	battery
 	zsh-autosuggestions
 	poetry
+	iterm-tab-colors
 )
 
 # User configuration
