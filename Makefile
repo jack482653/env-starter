@@ -50,8 +50,8 @@ pyenv:
 	brew install pyenv;
 
 python:
-	pyenv install 3.11; \
-	pyenv global 3.11;
+	pyenv install 3.12; \
+	pyenv global 3.12;
 
 poetry:
 	curl -sSL https://install.python-poetry.org | python3 - ; \
