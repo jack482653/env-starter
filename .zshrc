@@ -158,3 +158,11 @@ eval "$(github-copilot-cli alias -- "$0")"
 [[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"
 # Added by Windsurf
 export PATH="/Users/zhangwuxian/.codeium/windsurf/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/zhangwuxian/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
