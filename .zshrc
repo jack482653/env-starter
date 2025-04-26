@@ -95,6 +95,9 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 export BUILD_NUMBER=5566
 
+# 1password
+export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
