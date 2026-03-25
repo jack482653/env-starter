@@ -1,5 +1,6 @@
-# Amazon Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
+# Kiro CLI pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
+# Q pre block. Keep at the top of this file.
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -61,6 +62,8 @@ plugins=(
 	poetry
 	iterm-tab-colors
 	kubectl
+	terraform
+	direnv
 )
 
 # User configuration
@@ -70,6 +73,8 @@ plugins=(
 export PATH="/opt/homebrew/sbin:$PATH"
 # ccache
 export PATH="/usr/local/opt/ccache/libexec:$PATH"
+# libpq
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 # JAVA
 # export JAVA_HOME="$(/usr/libexec/java_home -v 13.0)"
 # Android SDK
@@ -79,7 +84,7 @@ export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
 export NDK_DIR="$HOME/Library/Android/sdk/ndk-bundle"
 export PATH="$NDK_DIR:$PATH"
 # Homebrew
-export PATH="$(/opt/homebrew/bin/brew --prefix coreutils)/libexec/gnubin:/usr/local/sbin:/usr/local/bin:/opt/homebrew/bin:$PATH"
+export PATH="$(/opt/homebrew/bin/brew --prefix coreutils)/libexec/gnubin:$(/opt/homebrew/bin/brew --prefix grep)/libexec/gnubin:/usr/local/sbin:/usr/local/bin:/opt/homebrew/bin:$PATH"
 # export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH"
 # Script
 export PATH="$HOME/Script:$PATH"
@@ -91,6 +96,9 @@ export PATH="$HOME/tools/spark/bin:$PATH"
 export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+# old ansible
+export PATH="/opt/homebrew/opt/ansible@9/bin:$PATH"
 
 export BUILD_NUMBER=5566
 
@@ -129,6 +137,7 @@ alias ls="ls --color=auto"
 
 alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 alias k="kubectl"
+alias tf="terraform"
 
 # thefuck
 eval "$(thefuck --alias)"
@@ -153,16 +162,27 @@ eval "$(github-copilot-cli alias -- "$0")"
 # export SDKMAN_DIR="$$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# Added by Windsurf
-export PATH="/Users/zhangwuxian/.codeium/windsurf/bin:$PATH"
+# secrets
+source "$HOME/.secret.sh"
 
 # pnpm
-export PNPM_HOME="/Users/zhangwuxian/Library/pnpm"
+export PNPM_HOME="/Users/wuxian/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
+export PATH="/Users/wuxian/Library/pnpm/nodejs_current/bin:$PATH"
 # pnpm end
 
-# Amazon Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+eval "$(direnv hook zsh)"
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
+
+# bun completions
+[ -s "/Users/wuxian/.bun/_bun" ] && source "/Users/wuxian/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
