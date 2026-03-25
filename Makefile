@@ -2,7 +2,7 @@ SHELL:=/bin/bash
 OS:=$(shell uname -s)
 PWD:=$(shell pwd)
 
-all: requirement sdkman nvm shell pyenv python poetry java node pnpm ruby fonts vimrc ctags tmux utils devtools
+all: requirement sdkman nvm shell pyenv python poetry java node pnpm bun ruby fonts vimrc ctags tmux utils devtools
 
 vimrc:
 	if [ ! -L $$HOME/.vimrc ]; then \
@@ -66,6 +66,9 @@ node:
 
 pnpm:
 	curl -fsSL https://get.pnpm.io/install.sh | sh -;
+
+bun:
+	curl -sfL https://bun.sh/install | bash;
 
 ruby:
 	brew install rbenv;
