@@ -65,7 +65,7 @@ node:
 	nvm install --lts;
 
 pnpm:
-	curl -fsSL https://get.pnpm.io/install.sh | sh -;
+	brew install pnpm;
 
 bun:
 	curl -sfL https://bun.sh/install | bash;
